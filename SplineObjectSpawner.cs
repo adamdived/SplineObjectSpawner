@@ -19,7 +19,8 @@ public class SplineObjectSpawner : MonoBehaviour
     public Vector2 randomScaleRange = new Vector2(1.0f, 2.0f); // Random scale range for spawned objects.
     public float minDistanceBetweenObjects = 4.0f; // Minimum distance between spawned objects.
     [SerializeField] private LayerMask terrainLayer = 1; // Layer mask for terrain detection.
-    public Vector2 randomOffsetRange = new Vector2(-2.0f, 2.0f); // Random offset range for object placement.
+    public Vector2 randomOffsetRange = new Vector2(-3.0f, 3.0f); // Random offset range for object placement.
+    public Vector2 randomRotationRangeY = new Vector2(0.0f, 360f); // Random Y rotation range.
     public Vector2 randomRotationRangeX = new Vector2(-5f, 5f); // Random X rotation range.
     public Vector2 randomRotationRangeZ = new Vector2(-5f, 5f); // Random Z rotation range.
     public float fixedYOffset = -0.3f; // Fixed Y offset for object placement.
@@ -133,7 +134,7 @@ public class SplineObjectSpawner : MonoBehaviour
 
                 // Set rotation to face the forward direction (ignoring spline knot rotations)
                 Quaternion rotation = Quaternion.LookRotation(forward, Vector3.up);
-                float randomYRotation = Random.Range(0f, 360f);
+                float randomYRotation = Random.Range(randomRotationRangeY.x, randomRotationRangeY.y);
                 float randomXRotation = Random.Range(randomRotationRangeX.x, randomRotationRangeX.y);
                 float randomZRotation = Random.Range(randomRotationRangeZ.x, randomRotationRangeZ.y);
                 Quaternion randomRotation = Quaternion.Euler(randomXRotation, randomYRotation, randomZRotation);
