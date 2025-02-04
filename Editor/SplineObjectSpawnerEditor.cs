@@ -4,10 +4,10 @@ using UnityEngine;
 [CustomEditor(typeof(SplineObjectSpawner))]
 public class SplineObjectSpawnerEditor : Editor
 {
-    private bool showSplineSettings = true;
-    private bool showObjectGroups = true;
-    private bool showPlacementSettings = true;
-    private bool showRotationSettings = true;
+    private bool _showSplineSettings = true;
+    private bool _showObjectGroups = true;
+    private bool _showPlacementSettings = true;
+    private bool _showRotationSettings = true;
 
     public override void OnInspectorGUI()
     {
@@ -29,8 +29,8 @@ public class SplineObjectSpawnerEditor : Editor
         using (new EditorGUILayout.VerticalScope(boxStyle))
         {
             EditorGUILayout.Space(5);  // Add space before foldout
-            showSplineSettings = EditorGUILayout.Foldout(showSplineSettings, "Spline Settings", true, headerStyle);
-            if (showSplineSettings)
+            _showSplineSettings = EditorGUILayout.Foldout(_showSplineSettings, "Spline Settings", true, headerStyle);
+            if (_showSplineSettings)
             {
                 EditorGUILayout.Space(5);  // Add space after foldout
                 EditorGUI.indentLevel++;
@@ -45,8 +45,8 @@ public class SplineObjectSpawnerEditor : Editor
         using (new EditorGUILayout.VerticalScope(boxStyle))
         {
             EditorGUILayout.Space(5);
-            showObjectGroups = EditorGUILayout.Foldout(showObjectGroups, "Object Groups", true, headerStyle);
-            if (showObjectGroups)
+            _showObjectGroups = EditorGUILayout.Foldout(_showObjectGroups, "Object Groups", true, headerStyle);
+            if (_showObjectGroups)
             {
                 EditorGUILayout.Space(5);
                 EditorGUI.indentLevel++;
@@ -84,8 +84,8 @@ public class SplineObjectSpawnerEditor : Editor
         using (new EditorGUILayout.VerticalScope(boxStyle))
         {
             EditorGUILayout.Space(5);
-            showPlacementSettings = EditorGUILayout.Foldout(showPlacementSettings, "Placement Settings", true, headerStyle);
-            if (showPlacementSettings)
+            _showPlacementSettings = EditorGUILayout.Foldout(_showPlacementSettings, "Placement Settings", true, headerStyle);
+            if (_showPlacementSettings)
             {
                 EditorGUILayout.Space(5);
                 EditorGUI.indentLevel++;
@@ -102,8 +102,8 @@ public class SplineObjectSpawnerEditor : Editor
         using (new EditorGUILayout.VerticalScope(boxStyle))
         {
             EditorGUILayout.Space(5);
-            showRotationSettings = EditorGUILayout.Foldout(showRotationSettings, "Rotation Settings", true, headerStyle);
-            if (showRotationSettings)
+            _showRotationSettings = EditorGUILayout.Foldout(_showRotationSettings, "Rotation Settings", true, headerStyle);
+            if (_showRotationSettings)
             {
                 EditorGUILayout.Space(5);
                 EditorGUI.indentLevel++;
