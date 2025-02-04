@@ -16,84 +16,120 @@ public class SplineObjectSpawnerEditor : Editor
         // Custom styling
         GUIStyle headerStyle = new GUIStyle(EditorStyles.foldout);
         headerStyle.fontStyle = FontStyle.Bold;
+        headerStyle.margin = new RectOffset(15, 0, 0, 0);  // Add left margin to foldout
+
+        // Box style
+        GUIStyle boxStyle = new GUIStyle(EditorStyles.helpBox);
+        boxStyle.padding = new RectOffset(20, 10, 5, 10);  // Increased left padding
+        boxStyle.margin = new RectOffset(0, 0, 10, 10);
 
         EditorGUILayout.Space(10);
 
         // Spline Settings
-        showSplineSettings = EditorGUILayout.Foldout(showSplineSettings, "Spline Settings", true, headerStyle);
-        if (showSplineSettings)
+        using (new EditorGUILayout.VerticalScope(boxStyle))
         {
-            EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("splineContainer"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("targetObjectDensity"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainLayer"));
-            EditorGUI.indentLevel--;
+            EditorGUILayout.Space(5);  // Add space before foldout
+            showSplineSettings = EditorGUILayout.Foldout(showSplineSettings, "Spline Settings", true, headerStyle);
+            if (showSplineSettings)
+            {
+                EditorGUILayout.Space(5);  // Add space after foldout
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("splineContainer"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("targetObjectDensity"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainLayer"));
+                EditorGUI.indentLevel--;
+            }
         }
-
-        EditorGUILayout.Space(10);
 
         // Object Groups
-        showObjectGroups = EditorGUILayout.Foldout(showObjectGroups, "Object Groups", true, headerStyle);
-        if (showObjectGroups)
+        using (new EditorGUILayout.VerticalScope(boxStyle))
         {
-            EditorGUI.indentLevel++;
-            
-            EditorGUILayout.LabelField("Group 1", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group1Prefabs"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group1Radius"));
-            
             EditorGUILayout.Space(5);
-            
-            EditorGUILayout.LabelField("Group 2", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group2Prefabs"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group2Radius"));
-            
-            EditorGUILayout.Space(5);
-            
-            EditorGUILayout.LabelField("Group 3", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group3Prefabs"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("group3Radius"));
-            
-            EditorGUI.indentLevel--;
+            showObjectGroups = EditorGUILayout.Foldout(showObjectGroups, "Object Groups", true, headerStyle);
+            if (showObjectGroups)
+            {
+                EditorGUILayout.Space(5);
+                EditorGUI.indentLevel++;
+                
+                EditorGUILayout.LabelField("Group 1", EditorStyles.boldLabel);
+                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group1Prefabs"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group1Radius"));
+                }
+                
+                EditorGUILayout.Space(5);
+                
+                EditorGUILayout.LabelField("Group 2", EditorStyles.boldLabel);
+                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group2Prefabs"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group2Radius"));
+                }
+                
+                EditorGUILayout.Space(5);
+                
+                EditorGUILayout.LabelField("Group 3", EditorStyles.boldLabel);
+                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group3Prefabs"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("group3Radius"));
+                }
+                
+                EditorGUI.indentLevel--;
+            }
         }
-
-        EditorGUILayout.Space(10);
 
         // Placement Settings
-        showPlacementSettings = EditorGUILayout.Foldout(showPlacementSettings, "Placement Settings", true, headerStyle);
-        if (showPlacementSettings)
+        using (new EditorGUILayout.VerticalScope(boxStyle))
         {
-            EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("randomScaleRange"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("minDistanceBetweenObjects"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("randomOffsetRange"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("fixedYOffset"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("maxSlopeAngle"));
-            EditorGUI.indentLevel--;
+            EditorGUILayout.Space(5);
+            showPlacementSettings = EditorGUILayout.Foldout(showPlacementSettings, "Placement Settings", true, headerStyle);
+            if (showPlacementSettings)
+            {
+                EditorGUILayout.Space(5);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("randomScaleRange"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("minDistanceBetweenObjects"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("randomOffsetRange"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("fixedYOffset"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxSlopeAngle"));
+                EditorGUI.indentLevel--;
+            }
         }
 
-        EditorGUILayout.Space(10);
-
         // Rotation Settings
-        showRotationSettings = EditorGUILayout.Foldout(showRotationSettings, "Rotation Settings", true, headerStyle);
-        if (showRotationSettings)
+        using (new EditorGUILayout.VerticalScope(boxStyle))
         {
-            EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeX"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeY"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeZ"));
-            EditorGUI.indentLevel--;
+            EditorGUILayout.Space(5);
+            showRotationSettings = EditorGUILayout.Foldout(showRotationSettings, "Rotation Settings", true, headerStyle);
+            if (showRotationSettings)
+            {
+                EditorGUILayout.Space(5);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeX"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeY"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("randomRotationRangeZ"));
+                EditorGUI.indentLevel--;
+            }
         }
 
         EditorGUILayout.Space(15);
 
         // Update button with custom styling
-        GUI.backgroundColor = Color.cyan;
-        if (GUILayout.Button("Update Spawn", GUILayout.Height(30)))
+        GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
+        buttonStyle.padding = new RectOffset(10, 10, 5, 5);
+        buttonStyle.fontStyle = FontStyle.Bold;
+
+        using (new EditorGUILayout.HorizontalScope())
         {
-            spawner.SpawnObjects();
+            GUI.backgroundColor = new Color(0.7f, 0.9f, 1f);
+            if (GUILayout.Button("Update Spawn", buttonStyle, GUILayout.Height(30)))
+            {
+                spawner.SpawnObjects();
+            }
+            GUI.backgroundColor = Color.white;
         }
-        GUI.backgroundColor = Color.white;
 
         // Apply modified properties
         serializedObject.ApplyModifiedProperties();
