@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine.Splines;
 
 // This script spawns objects along a spline and updates their positions when the spline changes.
+// by Marco Capelli
+
 [ExecuteInEditMode] // Ensures the script runs in the editor.
 public class SplineObjectSpawner : MonoBehaviour
 {
